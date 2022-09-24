@@ -1,20 +1,25 @@
-import './App.css';
-const conn = require('./config/db')
+import React from 'react'
 
-function queryDB() {
-  console.log("testing.. OK")
+function getDeals() {
+
+  const fetchPromise = fetch(`/api/deals`)
+  console.log(fetchPromise);
+
+  fetchPromise.then((response) => {
+    console.log(`response: ${response.status}`);
+    const jsonPromise = response.json();
+    jsonPromise.then((data) => {
+      console.log(data[0].deal)
+    })
+  });
 }
+
 function App() {
   return (
+
     <div>
   <h1>Auto Tracker</h1>
 
-  <div className="db_conn_status">
-    <button id=""></button>
-    <h3 id="db_status"> DB Disconnected </h3>
-  </div>
-
-  
   <div className="dropdowns"> 
     <label htmlFor="dealer_dd" id="dealer_dd_label">Dealership: </label>
     <select name="dealer_dd" id="dealer_list">
@@ -40,11 +45,13 @@ function App() {
 
   </div>
   <div className="search_button">
-    <button className="init_search" onClick={queryDB}> Search </button>
-    <button className="db_query" onClick={queryDB}> Search DB</button>
+    <button className="init_search" onClick={getDeals}> Search </button>
+    <button className="db_query" > Search DB</button>
   </div>
 
 </div>
+
+  
   );
 }
 
