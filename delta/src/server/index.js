@@ -21,6 +21,7 @@ app.listen(PORT, ()=> {
 
 ////////////////TEST QUERY///////////////////////
 //get all from saleslog where dealer = STORE_NAME
+
 app.get("/api/deals", (req, res)=> {
     conn.query("SELECT ALL DEAL FROM saleslog WHERE STORE_NAME = 'Napleton Hyundai'",(err, rows) => {
         if(err) {
@@ -31,4 +32,3 @@ app.get("/api/deals", (req, res)=> {
     });
     
 });
-
